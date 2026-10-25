@@ -183,17 +183,20 @@ void QAdwaitaDecorations::updateColors(bool useDarkColors)
     qCDebug(QAdwaitaDecorationsLog)
             << "Changing color scheme to " << (useDarkColors ? "dark" : "light");
 
-    m_colors = { { Background, useDarkColors ? QColor(0x2e2e32) : QColor(0xffffff) },
-                 { BackgroundInactive, useDarkColors ? QColor(0x222226) : QColor(0xfafafb) },
-                 { Foreground, useDarkColors ? QColor(0xffffff) : QColor(0x333338) },
-                 { ForegroundInactive, useDarkColors ? QColor(0x919193) : QColor(0x969699) },
-                 { Border, useDarkColors ? QColor(0x3d3d40) : QColor(0xc8c8c8) },
-                 { BorderInactive, useDarkColors ? QColor(0x313135) : QColor(0xe2e2e2) },
-                 { Shadow, useDarkColors ? QColor(0x2e2e32) : QColor(0x2e2e32) },
-                 { ButtonBackground, useDarkColors ? QColor(0x434347) : QColor(0xebebeb) },
-                 { ButtonBackgroundInactive, useDarkColors ? QColor(0x2d2d31) : QColor(0xf0f0f1) },
-                 { HoveredButtonBackground, useDarkColors ? QColor(0x4d4d51) : QColor(0xe0e0e1) },
-                 { PressedButtonBackground, useDarkColors ? QColor(0x6c6c6f) : QColor(0xc2c2c3) } };
+    // Ubuntu-orange title bar, matching ~/.config/gtk-{3,4}.0/gtk.css headerbar.
+    // Same palette in light and dark mode.
+    Q_UNUSED(useDarkColors)
+    m_colors = { { Background, QColor(0xE95420) },
+                 { BackgroundInactive, QColor(0xA63C17) },
+                 { Foreground, QColor(0xffffff) },
+                 { ForegroundInactive, QColor(0xffffff) },
+                 { Border, QColor(0xC7461B) },
+                 { BorderInactive, QColor(0x8A3213) },
+                 { Shadow, QColor(0x2e2e32) },
+                 { ButtonBackground, QColor(255, 255, 255, 38) },          // ~15% white
+                 { ButtonBackgroundInactive, QColor(255, 255, 255, 20) },  // ~8% white
+                 { HoveredButtonBackground, QColor(255, 255, 255, 64) },   // ~25% white
+                 { PressedButtonBackground, QColor(255, 255, 255, 102) } }; // ~40% white
     forceRepaint();
 }
 

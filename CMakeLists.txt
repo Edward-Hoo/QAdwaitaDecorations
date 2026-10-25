@@ -5,9 +5,18 @@ project(QAdwaitaDecorations
     DESCRIPTION "Qt Wayland decoration plugin using libadwaita style"
     LANGUAGES CXX C)
 
-option(USE_QT6 "Use Qt6 instead of Qt5" OFF)
+#option(USE_QT6 "Use Qt6 instead of Qt5" OFF)
 
+# Fork defaults: install to the user's plugin dir (no root needed)
+# and silence Qt's private-module warnings.
+option(USE_QT6 "Use Qt6 instead of Qt5" ON)
+set(QT_NO_PRIVATE_MODULE_WARNING ON)
+if (NOT QT_PLUGINS_DIR)
+    set(QT_PLUGINS_DIR "$ENV{HOME}/.local/lib/qt6/plugins"
+            CACHE PATH "Install dir for the decoration plugin")
+endif()
 set(CMAKE_AUTOMOC ON)
+# Fork off
 
 if (USE_QT6)
     set(QT_MIN_VERSION "6.5.0")
